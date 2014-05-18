@@ -3,6 +3,21 @@
 
     <string name="app_name">AgeRandomPrj</string>
     <string name="action_settings">Settings</string>
+    <string name="titulo">Age</string>
+    <string name="j1"></string>
+    <string name="j2"></string>
+    <string name="j3"></string>
+    <string name="j4"></string>
+    <string name="j5"></string>
+    <string name="j6"></string>
+    <string name="j7"></string>
+    <string name="j8"></string>
+    <string name="title_activity_menu">Menu</string>
+    <string name="escojer">Jugar</string>
+    <string name="Numero">Num.Jugadores</string>
+    <string name="aceptar">Aceptar</string>
+    <string name="title_activity_main_activitym">MainActivitym</string>
+    <string name="title_activity_jugadores">Jugadores</string>
     <string name="hello_world">Hello world!</string>
 
 </resources>

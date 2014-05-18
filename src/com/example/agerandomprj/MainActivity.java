@@ -1,26 +1,26 @@
 package com.example.agerandomprj;
 
-import java.util.ArrayList;
-import java.util.Random;
-
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 public class MainActivity extends Activity {
 	
-	String[] civilizaciones ={"Bizantinos","Aztecas","Bizantinos","Celtas","Chinos","Coreanos","Espa–oles","Francos","Godos","Hunos","Ingleses","Japoneses","Mayas","Mongoles","Persas","Sarracenos","Teutones","Turcos","Vikingos"};
+	private Spinner spinner1;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		int cantidadJugadores = 8;
-		ArrayList<Integer> equipos = generarEquiposRandom(cantidadJugadores);
-		ArrayList<Integer> civilizaciones = generarCivilizacionesRandom(cantidadJugadores);
-		for(int i=0;i<cantidadJugadores;i++){
-			System.out.println("Civilizaci—n: "+this.civilizaciones[civilizaciones.get(i)]+" equipo: "+equipos.get(i));
-		} 
+		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		spinner1 = (Spinner) findViewById(R.id.spinner1);
+        String []opciones={"1","2","3","4","5","6","7","8"};        
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, opciones);
+        spinner1.setAdapter(adapter); 
 		
 	}
 
@@ -31,53 +31,12 @@ public class MainActivity extends Activity {
 		return true;
 	}
 	
-	
-	public ArrayList<Integer> generarEquiposRandom(int numeroJugadores){
-		ArrayList<Integer> equipos = new ArrayList<Integer>();
-		int suma1 = 0;
-		int suma2 = 0;
-		int mitad = numeroJugadores/2;
-		
-		for(int i=0; i<numeroJugadores; i++){
-			int equipo = generarRandom(1,2);
-			
-			if(equipo ==1){
-				if(suma1<mitad){
-					equipos.add(equipo);
-					suma1++;
-				}else{
-					equipos.add(2);
-				}
-			}else{
-				if(suma2<mitad){
-					equipos.add(equipo);
-					suma2++;
-				}else{
-					equipos.add(1);
-				}
-			}
-		}
-		return equipos;
-	}
-	
-	public ArrayList<Integer> generarCivilizacionesRandom(int numeroJugadores){
-		ArrayList<Integer> civilizaciones = new ArrayList<Integer>();
-		
-		for(int i=0; i<numeroJugadores; i++){
-			int numero = generarRandom(0,(this.civilizaciones.length-1));
-			
-			while(civilizaciones.contains(numero)){
-				numero = generarRandom(0,(this.civilizaciones.length-1));
-			}
-			civilizaciones.add(numero);
-		}
-		
-		return civilizaciones;
-	}
-	
-	public int generarRandom(int min, int max){
-		Random r = new Random();
-		return (r.nextInt(max - min + 1) + min);
-	}
+	public void operar(View view) {
+        String selec=spinner1.getSelectedItem().toString();
+        int cantidadJugadores = Integer.parseInt(selec);
+        final Intent i = new Intent(this,Jugadores.class);
+        i.putExtra("cantidadJugadores", cantidadJugadores);
+        startActivity(i);
+    }   
 
 }
